@@ -10,11 +10,13 @@ function getWeather(){
         alert('Please enter a city');
         return;
     }
+    require('dotenv').config();
+    const apiKey= process.env.API_KEY;
     const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid${apiKey}`;
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
 
     fetch(currentWeatherUrl)
-          .then(response=> response.json)
+          .then(response => response.json())
           .then(data=> {
             displayWeather(data);
     })
@@ -66,7 +68,7 @@ function displayWeather(data){
         
         tempDivInfo.innerHTML = temperatureHTML;
         weatherInfoDiv.innerHTML = weatherHTML;
-        weatherIcon.src = iconURl;
+        weatherIcon.src = iconUrl;
         weatherIcon.alt = description;
 
         showImage();
